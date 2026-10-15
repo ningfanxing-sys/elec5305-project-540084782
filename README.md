@@ -11,12 +11,12 @@ SID: 540084782
 
 Head-related transfer functions (HRTFs) describe how the head and ears filter sound arriving from different directions. They are central to binaural audio, but measuring a dense set of directions for each listener is slow and requires specialist equipment, so practical systems reconstruct dense sets from sparse measurements.
 
-This project asks whether the failure of sparse-to-dense reconstruction can be predicted from the sparse sampling layout itself. The same nominal layouts of 25, 50 and 100 directions were realised on the measured grids of HUTUBS [11, 12] and SADIE II [13, 14]. Each layout was then reconstructed with five methods:
+This project asks whether the failure of sparse-to-dense reconstruction can be predicted from the sparse sampling layout itself. The same nominal layouts of 25, 50 and 100 directions were realised on the measured grids of HUTUBS [10, 11] and SADIE II [12, 13]. Each layout was then reconstructed with five methods:
 
 - nearest-neighbour (NN) interpolation;
 - spherical-harmonic (SH) interpolation [1];
 - time-aligned SH [3, 4];
-- ridge-regularised time-aligned SH [15];
+- ridge-regularised time-aligned SH [14];
 - SUpDEq magnitude-corrected interpolation (MCA) [5, 6, 7], as an external reference.
 
 Reconstruction error was related to the conditioning of the SH fit and to the distance between each target and its nearest measured context direction. Parameters were selected on half of HUTUBS and frozen. They were then applied unchanged to the other half and to all 18 human subjects of SADIE II, an independently measured database with a different measurement chain [9].
@@ -137,14 +137,14 @@ python plot_results.py        # result figures
 7. AudioGroupCologne. *SUpDEq: Spatial Upsampling by Directional Equalization*, MATLAB toolbox, commit 877401f (2025). https://github.com/AudioGroupCologne/SUpDEq
 8. Thuillier, E., Jin, C. T. & Välimäki, V. HRTF interpolation using a spherical neural process meta-learner. *IEEE/ACM Transactions on Audio, Speech, and Language Processing* **32**, 1790-1802 (2024). https://doi.org/10.1109/TASLP.2024.3361377
 9. Wen, Y., Zhang, Y. & Duan, Z. Mitigating cross-database differences for learning unified HRTF representation. *2023 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA)*, 1-5 (2023). https://doi.org/10.1109/WASPAA58266.2023.10248178
-10. Jin, C., Corderoy, A., Carlile, S. & van Schaik, A. Contrasting monaural and interaural spectral cues for human sound localization. *Journal of the Acoustical Society of America* **115**, 3124-3141 (2004). https://doi.org/10.1121/1.1736649
-11. Brinkmann, F. *et al.* A cross-evaluated database of measured and simulated HRTFs including 3D head meshes, anthropometric features, and headphone impulse responses. *Journal of the Audio Engineering Society* **67**, 705-718 (2019). https://doi.org/10.17743/jaes.2019.0024
-12. Brinkmann, F. *et al.* *The HUTUBS head-related transfer function (HRTF) database*. Technische Universität Berlin (2019). https://doi.org/10.14279/depositonce-8487
-13. Armstrong, C., Thresh, L., Murphy, D. & Kearney, G. A perceptual evaluation of individual and non-individual HRTFs: A case study of the SADIE II database. *Applied Sciences* **8**, 2029 (2018). https://doi.org/10.3390/app8112029
-14. AudioLab, University of York & Kearney, G. C. *SADIE II Database*, version 2-2 (2024). https://doi.org/10.5281/zenodo.12092466
-15. Zotkin, D. N., Duraiswami, R. & Gumerov, N. A. Regularized HRTF fitting using spherical harmonics. *2009 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA)*, 257-260 (2009). https://doi.org/10.1109/ASPAA.2009.5346521
-16. Slaney, M. *Auditory Toolbox, Version 2*. Technical Report 1998-010, Interval Research Corporation (1998).
-17. Majdak, P. *et al.* Spatially Oriented Format for Acoustics 2.1: Introduction and recent advances. *Journal of the Audio Engineering Society* **70**, 565-584 (2022). https://doi.org/10.17743/jaes.2022.0026
+10. Brinkmann, F. *et al.* A cross-evaluated database of measured and simulated HRTFs including 3D head meshes, anthropometric features, and headphone impulse responses. *Journal of the Audio Engineering Society* **67**, 705-718 (2019). https://doi.org/10.17743/jaes.2019.0024
+11. Brinkmann, F. *et al.* *The HUTUBS head-related transfer function (HRTF) database*. Technische Universität Berlin (2019). https://doi.org/10.14279/depositonce-8487
+12. Armstrong, C., Thresh, L., Murphy, D. & Kearney, G. A perceptual evaluation of individual and non-individual HRTFs: A case study of the SADIE II database. *Applied Sciences* **8**, 2029 (2018). https://doi.org/10.3390/app8112029
+13. AudioLab & Kearney, G. C. *SADIE II Database*, version 2-2. AudioLab, University of York (2024). https://doi.org/10.5281/zenodo.12092466
+14. Zotkin, D. N., Duraiswami, R. & Gumerov, N. A. Regularized HRTF fitting using spherical harmonics. *2009 IEEE Workshop on Applications of Signal Processing to Audio and Acoustics (WASPAA)*, 257-260 (2009). https://doi.org/10.1109/ASPAA.2009.5346521
+15. Jin, C., Corderoy, A., Carlile, S. & van Schaik, A. Contrasting monaural and interaural spectral cues for human sound localization. *Journal of the Acoustical Society of America* **115**, 3124-3141 (2004). https://doi.org/10.1121/1.1736649
+16. Majdak, P. *et al.* Spatially Oriented Format for Acoustics 2.1: Introduction and recent advances. *Journal of the Audio Engineering Society* **70**, 565-584 (2022). https://doi.org/10.17743/jaes.2022.0026
+17. Slaney, M. *Auditory Toolbox, Version 2*. Technical Report 1998-010, Interval Research Corporation (1998).
 
 ## AI use acknowledgement
 
