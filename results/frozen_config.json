@@ -1,0 +1,196 @@
+{
+  "frozen_on": "2026-10-15",
+  "selection_subjects": [
+    "pp2",
+    "pp3",
+    "pp4",
+    "pp5",
+    "pp6",
+    "pp8",
+    "pp10",
+    "pp12",
+    "pp14",
+    "pp16",
+    "pp18",
+    "pp20",
+    "pp22",
+    "pp24",
+    "pp26",
+    "pp28",
+    "pp30",
+    "pp32",
+    "pp34",
+    "pp36",
+    "pp38",
+    "pp40",
+    "pp42",
+    "pp44",
+    "pp46",
+    "pp48",
+    "pp50",
+    "pp52",
+    "pp54",
+    "pp56",
+    "pp58",
+    "pp60",
+    "pp62",
+    "pp64",
+    "pp66",
+    "pp68",
+    "pp70",
+    "pp72",
+    "pp74",
+    "pp76",
+    "pp78",
+    "pp80",
+    "pp82",
+    "pp84",
+    "pp86",
+    "pp88",
+    "pp90",
+    "pp92",
+    "pp94"
+  ],
+  "held_out_subjects": [
+    "pp7",
+    "pp9",
+    "pp11",
+    "pp13",
+    "pp15",
+    "pp17",
+    "pp19",
+    "pp21",
+    "pp23",
+    "pp25",
+    "pp27",
+    "pp29",
+    "pp31",
+    "pp33",
+    "pp35",
+    "pp37",
+    "pp39",
+    "pp41",
+    "pp43",
+    "pp45",
+    "pp47",
+    "pp49",
+    "pp51",
+    "pp53",
+    "pp55",
+    "pp57",
+    "pp59",
+    "pp61",
+    "pp63",
+    "pp65",
+    "pp67",
+    "pp69",
+    "pp71",
+    "pp73",
+    "pp75",
+    "pp77",
+    "pp79",
+    "pp81",
+    "pp83",
+    "pp85",
+    "pp87",
+    "pp89",
+    "pp91",
+    "pp93",
+    "pp95"
+  ],
+  "external_subjects": [
+    "H3",
+    "H4",
+    "H5",
+    "H6",
+    "H7",
+    "H8",
+    "H9",
+    "H10",
+    "H11",
+    "H12",
+    "H13",
+    "H14",
+    "H15",
+    "H16",
+    "H17",
+    "H18",
+    "H19",
+    "H20"
+  ],
+  "toa": "4th-order 1 kHz high-pass, first sample above 20% of the peak, 8x upsampling",
+  "toa_order": 3,
+  "directions_used": "elevation >= -65 degrees in both databases",
+  "lambda_grid": [
+    0,
+    1e-05,
+    0.0001,
+    0.001,
+    0.01,
+    0.1,
+    1
+  ],
+  "aligned_ridge_sh": {
+    "uniform": {
+      "25": {
+        "N": 3,
+        "lambda": 0.1
+      },
+      "50": {
+        "N": 5,
+        "lambda": 0.1
+      },
+      "100": {
+        "N": 7,
+        "lambda": 0.01
+      }
+    },
+    "random1": {
+      "25": {
+        "N": 3,
+        "lambda": 0.1
+      },
+      "50": {
+        "N": 4,
+        "lambda": 0.1
+      },
+      "100": {
+        "N": 6,
+        "lambda": 0.01
+      }
+    },
+    "random2": {
+      "25": {
+        "N": 3,
+        "lambda": 0.1
+      },
+      "50": {
+        "N": 4,
+        "lambda": 0.1
+      },
+      "100": {
+        "N": 6,
+        "lambda": 0.01
+      }
+    },
+    "gap": {
+      "25": {
+        "N": 4,
+        "lambda": 0.1
+      },
+      "50": {
+        "N": 6,
+        "lambda": 0.1
+      },
+      "100": {
+        "N": 8,
+        "lambda": 0.01
+      }
+    }
+  },
+  "transfer_criteria": [
+    "kappa: for ordinary and time-aligned SH (lambda = 0), fit median LSD (200 Hz-16 kHz, mean over subjects) against log10(kappa) over all (layout, M, N) with kappa > 10. The relationship transfers if the SADIE II slope lies inside the 95% bootstrap interval (subjects resampled, 2000 times) of the HUTUBS held-out slope.",
+    "d_min: for NN and the frozen time-aligned ridge SH, fit target LSD against d_min for targets with d_min <= 35 degrees, separately per subject. The relationship transfers if the mean SADIE II slope lies inside the 95% bootstrap interval of the mean HUTUBS held-out slope.",
+    "ranking: for each of the 12 (layout, M) conditions, compare the frozen time-aligned ridge SH with NN by the median over subjects of the per-subject median LSD. The ranking transfers if it agrees between HUTUBS held-out and SADIE II in at least 10 of 12 conditions."
+  ]
+}

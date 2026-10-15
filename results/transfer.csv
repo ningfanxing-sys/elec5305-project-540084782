@@ -1,0 +1,6 @@
+criterion,method,hutubs,ci_low,ci_high,sadie,agree,transfers
+kappa slope (dB per decade),SH,5.336708669690578,5.294611297427524,5.377652653360039,6.336328456537771,,False
+kappa slope (dB per decade),SH-aligned,4.021899615649858,3.9287290429061636,4.1225625312544185,6.928716522536904,,False
+d_min slope (dB per 10 degrees),NN,1.7338203149696605,1.695136612185189,1.773772868728225,2.0333788917743303,,False
+d_min slope (dB per 10 degrees),SH-aligned-ridge,2.16571658132979,2.124001318049561,2.2068815320649935,1.921679736413368,,False
+ranking vs NN (conditions agreeing of 12),SH-aligned-ridge,2.0,,,0.0,10.0,True

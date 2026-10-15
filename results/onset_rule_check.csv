@@ -1,0 +1,10 @@
+dataset,rule,sign_errors,median_abs_diff_us
+HUTUBS pp2,10% threshold,0,26.927437641723373
+HUTUBS pp2,"1 kHz high-pass, 10% threshold",0,26.92743764172333
+HUTUBS pp2,"1 kHz high-pass, 20% threshold",0,21.25850340136057
+SADIE H3,10% threshold,68,385.4875283446712
+SADIE H3,"1 kHz high-pass, 10% threshold",0,82.19954648526065
+SADIE H3,"1 kHz high-pass, 20% threshold",0,39.68253968253961
+SADIE H10,10% threshold,39,310.374149659864
+SADIE H10,"1 kHz high-pass, 10% threshold",0,28.34467120181432
+SADIE H10,"1 kHz high-pass, 20% threshold",0,36.84807256235817
