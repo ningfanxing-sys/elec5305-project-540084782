@@ -1,0 +1,8 @@
+data/raw/
+external/
+.venv/
+__pycache__/
+.pytest_cache/
+.DS_Store
+results/eval_targets.csv.gz
+results/mca/
