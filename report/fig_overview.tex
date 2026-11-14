@@ -1,0 +1,36 @@
+\begin{tikzpicture}[
+  font=\scriptsize, >={Stealth[length=1.8mm]},
+  box/.style={draw, rounded corners=2pt, align=center, inner sep=2.5pt, line width=0.5pt},
+  geo/.style={box, fill=blue!6, draw=blue!55!black},
+  sig/.style={box, fill=orange!9, draw=orange!70!black},
+  pro/.style={box, fill=black!5, draw=black!55, minimum height=10mm},
+  fol/.style={box, dashed, fill=white, draw=black!55, minimum height=10mm},
+  title/.style={font=\footnotesize\bfseries},
+  lab/.style={font=\scriptsize\bfseries, text=black!65, anchor=south west, inner sep=0pt}]
+  % row 1: signal path, repeated for every subject, layout and budget
+  \node[sig, text width=29mm, minimum height=25mm] (data) at (15mm,0) {{\footnotesize\bfseries Measured HRIRs}\\[2pt]HUTUBS: 94 sets\\SADIE~II: 18 subjects\\[2pt]onset rule\\elevation $\ge-65^\circ$};
+  \node[geo, text width=37mm, minimum height=25mm] (layout) at (53mm,0) {{\footnotesize\bfseries Sparse layout}\\[2pt]
+    \includegraphics[width=16mm]{inset_uniform}\hspace{1.5mm}\includegraphics[width=16mm]{inset_gap}\\[1pt]
+    uniform, random1, random2, gap\\$M = 25, 50, 100$ directions};
+  \node[sig, text width=33mm, minimum height=25mm] (rec) at (95.5mm,0) {{\footnotesize\bfseries Reconstruction}\\[2pt]NN, SH, SH-aligned,\\SH-aligned-ridge\\[2pt]SUpDEq OBTA and MCA\\(ten-subject subset)};
+  \node[sig, text width=29mm, minimum height=25mm] (err) at (135mm,0) {{\footnotesize\bfseries Errors per target}\\[2pt]LSD in five bands\\and per ear\\[2pt]$|\Delta\mathrm{ITD}|$, $|\Delta\mathrm{ILD}|$};
+  % row 2: geometry path
+  \node[geo, text width=37mm, minimum height=11mm] (desc) at (53mm,-21mm) {{\footnotesize\bfseries Layout descriptors}\\[1pt]$d_{\min}$ per target; $r_{\max}$; $\kappa(N)$};
+  \node[geo, text width=29mm, minimum height=11mm] (ana) at (135mm,-21mm) {{\footnotesize\bfseries Analysis}\\[1pt]error against descriptors};
+  \draw[->] (data) -- (layout);
+  \draw[->] (layout) -- (rec);
+  \draw[->] (rec) -- (err);
+  \draw[->] (layout) -- (desc);
+  \draw[->] (err) -- (ana);
+  \draw[->] (desc) -- node[above]{same analysis in both databases} (ana);
+  \node[lab] at ([yshift=1.3mm]data.north west) {Repeated for every subject, layout and budget};
+  % row 3: protocol
+  \node[pro, text width=34mm] (sel) at (17mm,-38mm) {Select $N$ and $\lambda$ on the\\HUTUBS selection half (49)};
+  \node[pro, text width=19mm] (frz) at (51.5mm,-38mm) {Freeze the\\configuration};
+  \node[pro, text width=40mm] (test) at (92mm,-38mm) {Apply unchanged to HUTUBS\\held-out (45) and SADIE~II (18)};
+  \node[fol, text width=29mm] (fol) at (135mm,-38mm) {Follow-up: smoothed onsets,\\ear side, run time, demo};
+  \draw[->] (sel) -- (frz);
+  \draw[->] (frz) -- (test);
+  \draw[->, dashed] (test) -- (fol);
+  \node[lab] at ([yshift=1.3mm]sel.north west) {Protocol};
+\end{tikzpicture}
