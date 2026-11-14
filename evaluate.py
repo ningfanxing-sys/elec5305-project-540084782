@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from reconstruct import BUDGETS, LAYOUTS, cue_errors, lsd_bands, prepare, setup, sh_estimate
+from reconstruct import BUDGETS, LAYOUTS, cue_errors, ear_lsd, lsd_bands, prepare, setup, sh_estimate
 from sh import n_fit, n_max
 from sofa import HUTUBS_TEST, SADIE_SUBJECTS, load_subject
 
@@ -25,6 +25,10 @@ def evaluate_subject(database, subject, config):
                 runs[("SH-aligned", N, 0.0)] = sh_estimate(d, s, N, aligned=True)
             runs[("SH-aligned-ridge", frozen["N"], frozen["lambda"])] = sh_estimate(
                 d, s, frozen["N"], frozen["lambda"], aligned=True)
+            # follow-up: alignment with the smoothed onsets of the context directions, same orders and lambda
+            runs[("SH-aligned-smooth", n_fit(M), 0.0)] = sh_estimate(d, s, n_fit(M), aligned=True, smooth=True)
+            runs[("SH-aligned-ridge-smooth", frozen["N"], frozen["lambda"])] = sh_estimate(
+                d, s, frozen["N"], frozen["lambda"], aligned=True, smooth=True)
 
             for (method, N, lam), (estimate, kappa, coef_norm) in runs.items():
                 errors = lsd_bands(d, s, estimate)
@@ -33,12 +37,14 @@ def evaluate_subject(database, subject, config):
                                     N=N, lam=lam, kappa=kappa, coef_norm=coef_norm, energy_db=energy_db,
                                     finite=bool(np.isfinite(estimate).all()),
                                     **{f"median_{band}": np.median(e) for band, e in errors.items()}))
-                if method in ("NN", "SH-aligned-ridge") or N == n_fit(M):
-                    itd_error, ild_error = cue_errors(d, s, estimate)
-                    targets.append(pd.DataFrame(dict(
-                        database=database, subject=subject, layout=layout, M=M, method=method,
-                        target=s["targets"], az=d["az"][s["targets"]], el=d["el"][s["targets"]],
-                        d_min=s["d_min"], itd_error_us=itd_error, ild_error_db=ild_error, **errors)))
+                if method in ("SH", "SH-aligned") and N != n_fit(M):
+                    continue  # per-target rows only for the orders compared across methods
+                itd_error, ild_error = cue_errors(d, s, estimate)
+                targets.append(pd.DataFrame(dict(
+                    database=database, subject=subject, layout=layout, M=M, method=method,
+                    target=s["targets"], az=d["az"][s["targets"]], el=d["el"][s["targets"]],
+                    d_min=s["d_min"], itd_error_us=itd_error, ild_error_db=ild_error, **errors,
+                    **ear_lsd(d, s, estimate))))
     return summary, targets
 
 

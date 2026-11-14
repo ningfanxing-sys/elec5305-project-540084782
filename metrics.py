@@ -8,10 +8,15 @@ def to_hrtf(ir, fs):
     return np.fft.rfft(ir, axis=-1), np.fft.rfftfreq(ir.shape[-1], 1 / fs)
 
 
-def lsd(H_ref, H_est, f, band):
+def lsd_ears(H_ref, H_est, f, band):
+    # log-spectral distortion of each ear separately, shape (directions, 2)
     bins = (f >= band[0]) & (f <= band[1])
     ratio = (np.abs(H_ref[..., bins]) + 1e-12) / (np.abs(H_est[..., bins]) + 1e-12)
-    return np.sqrt(np.mean((20 * np.log10(ratio)) ** 2, axis=-1)).mean(axis=1)
+    return np.sqrt(np.mean((20 * np.log10(ratio)) ** 2, axis=-1))
+
+
+def lsd(H_ref, H_est, f, band):
+    return lsd_ears(H_ref, H_est, f, band).mean(axis=1)
 
 
 def itd_us(ir, fs, up=8):

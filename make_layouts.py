@@ -37,6 +37,16 @@ def make_figures(data, layouts):
         ax.label_outer()
     save(fig, "layouts_M50")
 
+    for name in ("uniform", "gap"):  # small insets for the overview diagram of the report
+        fig, ax = plt.subplots(figsize=(1.45, 0.85))
+        index = layouts[name]["50"]
+        ax.scatter(wrapped, el, s=1, color="0.75", linewidths=0)
+        ax.scatter(wrapped[index], el[index], s=5, color="#0072B2", linewidths=0)
+        ax.set(xlim=(-180, 180), ylim=(-90, 90), xticks=[], yticks=[])
+        ax.grid(False)
+        ax.spines[["top", "right"]].set_visible(True)
+        save(fig, f"inset_{name}")
+
     fig, axes = plt.subplots(1, 3, figsize=(6.5, 2.2), sharey=True)
     for letter, ax, M in zip("abc", axes, M_VALUES):
         spacing = [nearest_spacing(xyz[layouts[name][str(M)]])
@@ -50,7 +60,7 @@ def make_figures(data, layouts):
             ax.legend()
     save(fig, "nn_spacing")
 
-    fig, axes = plt.subplots(1, 2, figsize=(6.5, 2.6))
+    fig, axes = plt.subplots(1, 2, figsize=(4.4, 2.5), sharey=True)
     for ax, settings in zip(axes, ([(M, n_max(M)) for M in M_VALUES],
                                    [(50, N) for N in range(2, 7)])):
         for M, N in settings:
@@ -60,8 +70,8 @@ def make_figures(data, layouts):
             ax.semilogy(np.arange(1, len(sv) + 1), sv, label=f"M={M}, N={N}")
         ax.set(xlabel="Singular value index", ylabel="Singular value", ylim=(1e-3, 3))
         ax.legend()
-    axes[0].set_title("(a) Uniform layouts at their highest order")
-    axes[1].set_title("(b) Uniform layout, M = 50, orders 2 to 6")
+    axes[0].set_title("(a) Highest order per budget")
+    axes[1].set_title("(b) M = 50, orders 2 to 6")
     save(fig, "singular_values")
 
 
